@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -7,13 +7,16 @@ import { useDispatch} from 'react-redux';
 import {cart} from "../action/cartReducer"
 
 
+
 const Item = ({img,id}) => {
 
 const dispach=useDispatch();
   const addCart=(e)=>{
 
    axios.get(`https://veera-backend.herokuapp.com/product/find/${e}`,{}).then(res=>{
-     dispach(cart(...res.data))
+     const data=res.data
+
+     dispach(cart({...data}))
    })
 
 

@@ -5,14 +5,24 @@ import Footer from "../component/Footer"
 import Cartcard from '../component/Cartcard'
 import axios from 'axios'
 import jwtDecode from "jwt-decode"
+import { useSelector} from 'react-redux'
 
 const Cart = () => {
 
+  const  cartArry =useSelector(state=>state.cart.value)
+
+  localStorage.setItem("cart",JSON.stringify([...cartArry]))
+
+
+
+ 
   const token=localStorage.getItem('token')
   const {id,isadmin}=jwtDecode(token)
 
 
   useEffect(()=>{
+
+
 
    const tiket=JSON.stringify(localStorage.getItem('token'))
 console.log(token)
@@ -50,7 +60,29 @@ console.log(token)
 
           </div>
 
-          <Cartcard/><Cartcard/> <Cartcard/>
+
+ 
+         {
+           cartArry.map((cartitem)=>{
+           const {img,title,_id,color,size,price}=cartitem
+            return (
+
+              <Cartcard
+              title={title}
+              img={img}
+              id={_id}
+              color={color}
+              size={size}
+              price={price}
+    
+              />
+
+            )
+
+           } )
+         }
+
+
         </div>
 
         <div style={{ position:"relative",flex: "1"}}>
