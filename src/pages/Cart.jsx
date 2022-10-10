@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from "../component/Navbar"
 import Newsletter from "../component/Newsletter"
 import Footer from "../component/Footer"
 import Cartcard from '../component/Cartcard'
+import axios from 'axios'
+import jwtDecode from "jwt-decode"
 
 const Cart = () => {
+
+  const token=localStorage.getItem('token')
+  const {id,isadmin}=jwtDecode(token)
+
+
+  useEffect(()=>{
+
+   const tiket=JSON.stringify(localStorage.getItem('token'))
+console.log(token)
+    axios.get(`https://veera-backend.herokuapp.com/cart/find/${id}`,{ headers:{
+      "token":tiket
+    }}
+    ).then(response=>
+     console.log()
+     )
+
+
+  },[])
+
+  
+
   return (
     <>
       <Navbar />

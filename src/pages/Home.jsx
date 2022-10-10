@@ -6,8 +6,13 @@ import Category from '../component/Category'
 import Items from '../component/Items'
 import Newsletter from '../component/Newsletter'
 import Footer from '../component/Footer'
+import axios from "axios"
+const Home =() => {
 
-const Home = () => {
+
+  
+
+
   return (
     <>
     <Navbar />
